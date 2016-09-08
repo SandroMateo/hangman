@@ -4,12 +4,45 @@ public class App {
   public static void main(String[] args) {
     Console console = System.console();
 
+    String gameChoice = "";
+    String gameDifficulty = "";
+    String inputHiddenPhrase = "";
+
     System.out.println("Let's play Hangman!");
-    System.out.println("Enter a phrase for others to guess:");
-    String inputHiddenPhrase = console.readLine();
+
+    while(!gameChoice.equalsIgnoreCase("single player") && !gameChoice.equalsIgnoreCase("multiplayer")) {
+      System.out.println("Choose 'single player' or 'multiplayer'.");
+      gameChoice = console.readLine();
+
+      if (gameChoice.equalsIgnoreCase("multiplayer")) {
+        System.out.println("Enter a phrase for others to guess:");
+        inputHiddenPhrase = console.readLine();
+
+      } else if (gameChoice.equalsIgnoreCase("single player")) {
+
+        while(!gameDifficulty.equalsIgnoreCase("Easy") && !gameDifficulty.equalsIgnoreCase("Medium") && !gameDifficulty.equalsIgnoreCase("Hard")) {
+          System.out.println("Choose your difficulty: 'Easy', 'Medium' or 'Hard'.");
+          gameDifficulty = console.readLine();
+          if(!gameDifficulty.equalsIgnoreCase("Easy") && !gameDifficulty.equalsIgnoreCase("Medium") && !gameDifficulty.equalsIgnoreCase("Hard")) {
+            System.out.println("That selection isn't recognized.");
+          }
+        }
+      } else {
+        System.out.println("That selection isn't recognized.");
+      }
+    }
 
     Hangman game = new Hangman(inputHiddenPhrase);
 
+    if (gameDifficulty.equalsIgnoreCase("Easy")) {
+      game.chooseEasyWord();
+    } else if (gameDifficulty.equalsIgnoreCase("Medium")) {
+      game.chooseMedWord();
+    } else if (gameDifficulty.equalsIgnoreCase("Hard")){
+      game.chooseHardWord();
+    } else {
+      inputHiddenPhrase = inputHiddenPhrase;
+    }
     System.out.println(game.stringToDashes());
     System.out.println("Start guessing!");
 

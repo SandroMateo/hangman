@@ -54,6 +54,25 @@ public class HangmanTest {
     assertEquals("a- a--", testHangman.stringContainsChar('a'));
   }
 
+  @Test
+  public void Hangman_chooseEasyWord_randomEasyWord() {
+    Hangman testHangman = new Hangman("");
+    String randomWord =testHangman.chooseEasyWord();
+    assertEquals(true, randomWord instanceof String);
+  }
 
+  @Test
+  public void Hangman_chooseMedWord_randomMedWord() {
+    Hangman testHangman = new Hangman("");
+    String randomWord =testHangman.chooseMedWord();
+    assertEquals(true, randomWord instanceof String);
+  }
+
+  @Test
+  public void Hangman_chooseHardWord_randomHardWord() {
+    Hangman testHangman = new Hangman("");
+    String randomWord =testHangman.chooseHardWord();
+    assertEquals(true, randomWord instanceof String);
+  }
 
 }

@@ -1,6 +1,11 @@
+import java.util.Random;
+
 class Hangman {
 
   private String mHiddenWord;
+  private String[] mEasyWords = {"cat", "dog", "hat"};
+  private String[] mMedWords = {"hotdog", "yachtsman", "javascript", "jazz"};
+  private String[] mHardWords = {"equilibrium", "mathematica", "symposium"};
   private String mBlankedWord;
   private char[] mHiddenArray;
   private char[] mBlankedArray;
@@ -23,6 +28,29 @@ class Hangman {
   public int getGuessCount() {
     return mGuessCount;
   }
+
+  public String chooseEasyWord() {
+    Random myRandomGenerator = new Random();
+    int randomSelection = myRandomGenerator.nextInt(mEasyWords.length);
+    mHiddenWord = mEasyWords[randomSelection];
+    return mHiddenWord;
+  }
+
+  public String chooseMedWord() {
+    Random myRandomGenerator = new Random();
+    int randomSelection = myRandomGenerator.nextInt(mMedWords.length);
+    mHiddenWord = mMedWords[randomSelection];
+    return mHiddenWord;
+  }
+
+  public String chooseHardWord() {
+    Random myRandomGenerator = new Random();
+    int randomSelection = myRandomGenerator.nextInt(mHardWords.length);
+    mHiddenWord = mHardWords[randomSelection];
+    return mHiddenWord;
+  }
+
+  
 
   public String stringToDashes() {
     mBlankedWord = mHiddenWord.replaceAll("[a-zA-Z]", "-");
